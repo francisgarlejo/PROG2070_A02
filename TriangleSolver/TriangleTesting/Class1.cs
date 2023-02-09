@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -116,6 +117,77 @@ namespace TriangleTesting
             expected = "Based on all three sides being different, the type of triangle is a SCALENE";
             Triangle t1 = new Triangle();
             actual = t1.AnalyzeTriangle(5, 6, 3); //Act
+            Assert.AreEqual(expected, actual); //Assert
+        }
+
+        //Three(3) tests for verifying a zero length for one or more sides
+
+        [Test]
+        public void AnalyzeTriangle_ZeroCheck_Valid1()
+        {
+            string actual;
+            string expected;
+            expected = "At least one side of your triangle has a zero length and is thus invalid";
+            Triangle t1 = new Triangle();
+            actual = t1.AnalyzeTriangle(0, 6, 3); //Act
+            Assert.AreEqual(expected, actual); //Assert
+        }
+
+        [Test]
+        public void AnalyzeTriangle_ZeroCheck_Valid2()
+        {
+            string actual;
+            string expected;
+            expected = "At least one side of your triangle has a zero length and is thus invalid";
+            Triangle t1 = new Triangle();
+            actual = t1.AnalyzeTriangle(5, 0, 3); //Act
+            Assert.AreEqual(expected, actual); //Assert
+        }
+
+        [Test]
+        public void AnalyzeTriangle_ZeroCheck_Valid3()
+        {
+            string actual;
+            string expected;
+            expected = "At least one side of your triangle has a zero length and is thus invalid";
+            Triangle t1 = new Triangle();
+            actual = t1.AnalyzeTriangle(5, 6, 0); //Act
+            Assert.AreEqual(expected, actual); //Assert
+        }
+
+        // Three (3) tests for verifying an invalid response (other than a zero length)
+
+
+        [Test]
+        public void AnalyzeTriangle_Check_Invalid1()
+        {
+            string actual;
+            string expected;
+            expected = "Based on the values entered, the triangle is INVALID";
+            Triangle t1 = new Triangle();
+            actual = t1.AnalyzeTriangle(5, -6, 1); //Act
+            Assert.AreEqual(expected, actual); //Assert
+        }
+
+        [Test]
+        public void AnalyzeTriangle_Check_Invalid2()
+        {
+            string actual;
+            string expected;
+            expected = "Based on the values entered, the triangle is INVALID";
+            Triangle t1 = new Triangle();
+            actual = t1.AnalyzeTriangle(1000, 6, 3); //Act
+            Assert.AreEqual(expected, actual); //Assert
+        }
+
+        [Test]
+        public void AnalyzeTriangle_Check_Invali3()
+        {
+            string actual;
+            string expected;
+            expected = "Based on the values entered, the triangle is INVALID";
+            Triangle t1 = new Triangle();
+            actual = t1.AnalyzeTriangle(5, 6, 100); //Act
             Assert.AreEqual(expected, actual); //Assert
         }
     }
